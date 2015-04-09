@@ -69,8 +69,8 @@ int main(void) {
 		// wykonywanie akcji
 		executeAction();
 		// opoznienie
-		if (switchIsOn(SWITCH2)) {waitMs(20);}
-		else {waitMs(50);}
+		if (switchIsOn(SWITCH2)) waitMs(20);
+		else waitMs(50);
 	}
 }
 
@@ -96,6 +96,12 @@ void selectAction() {
 		} else if (!grdDetected(GRD4)) {
 			// jesli linia jest z tylu po prawej - ucieczka do przodu lewo
 			currentAction = FORWARD_LEFT;
+		} else if (!grdDetected(GRD2) && (!grdDetected(GRD4)) {
+			//jeżeli linia jest wykryta przez 2 czujniki z prawej
+                        currentAction = BACKWARD_LEFT;
+		} else if (!grdDetected(GRD1) && (!grdDetected(GRD3)) {
+			//jeżeli linia jest wykryta przez 2 czujniki z lewej
+                        currentAction = BACKWARD_RIGHT;
 		}
 	}
 
@@ -121,8 +127,8 @@ void selectAction() {
 	// nie ma ani lini, ani przeciwnika
 	if (currentAction == STOP) {
 		// jesli robot stoi, to podejmuje akcje
-		if (lastAction == FORWARD_LEFT) {
-			currentAction = FORWARD_LEFT;
+		if (lastAction == ROTATE_LEFT) {
+			currentAction = ROTATE_LEFT;
 		} else {
 			currentAction = FORWARD_RIGHT;
 		}
