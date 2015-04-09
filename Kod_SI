@@ -50,7 +50,7 @@ void selectAction();
 
 // wartosc aktuanie wykonywanej czynnosci
 volatile int currentAction = STOP;
-volatile int lastAction = FORWARD_LEFT;
+volatile int lastAction = ROTATE_LEFT;
 
 int main(void) {
 	init();
@@ -127,11 +127,12 @@ void selectAction() {
 	// nie ma ani lini, ani przeciwnika
 	if (currentAction == STOP) {
 		// jesli robot stoi, to podejmuje akcje
-		if (lastAction == ROTATE_LEFT) {
+		if (lastAction == ROTATE_LEFT)
 			currentAction = ROTATE_LEFT;
-		} else {
-			currentAction = FORWARD_RIGHT;
-		}
+			
+		 else if (lastAction == ROTATE_RIGHT)
+			currentAction = ROTATE_RIGHT;
+	    }
 	}
 }
 
