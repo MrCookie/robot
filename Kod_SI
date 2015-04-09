@@ -135,7 +135,7 @@ void selectAction() {
 	    }
 	}
 }
-
+/q/s/d/s/w/e/d//
 // Funkcja wykonuje akcje
 void executeAction() {
 	if (currentAction == STOP) {
