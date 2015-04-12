@@ -23,7 +23,7 @@
  * LED5-7 - stan czujnikow DIST
  * LED8 - miga z okresem 1s
  * LED9-11 - odliczanie binarne i ruch robota
- * LED12 - aktywne USB 
+ * LED12 - aktywne USB
  */
 
 // definicja progu widzenia czujnikow odleglosci
@@ -97,12 +97,12 @@ void selectAction() {
 		} else if (!grdDetected(GRD4)) {
 			// jesli linia jest z tylu po prawej - ucieczka do przodu lewo
 			currentAction = FORWARD_LEFT;
-		} else if (!grdDetected(GRD2) && (!grdDetected(GRD4)) {
+		} else if (!grdDetected(GRD2) && (!grdDetected(GRD4))) {
 			//jeżeli linia jest wykryta przez 2 czujniki z prawej
                         currentAction = BACKWARD_LEFT;
-		} else if (!grdDetected(GRD1) && (!grdDetected(GRD3)) {
+		} else if (!grdDetected(GRD1) && (!grdDetected(GRD3))) {
 			//jeżeli linia jest wykryta przez 2 czujniki z lewej
-                        currentAction = BACKWARD_RIGHT;
+                        currentAction = BACKWARD_RIGHR;
 		}
 	}
 
@@ -130,10 +130,10 @@ void selectAction() {
 		// jesli robot stoi, to podejmuje akcje
 		if (lastAction == ROTATE_LEFT)
 			currentAction = ROTATE_LEFT;
-			
-		 else if (lastAction == ROTATE_RIGHT)
-			currentAction = ROTATE_RIGHT;
-		else
+
+		 else if (lastAction == ROTATE_RIGHT){
+			currentAction = ROTATE_RIGHT;}
+		else{
 		currentAction = DEF1;
 	    }
 	}
@@ -179,7 +179,7 @@ void executeAction() {
 		servoForward(SERVO1);
 		waitMs(20);
 		servoBackward(SERVO2);
-		servoBackward(SERVO1);		
+		servoBackward(SERVO1);
 	}
 }
 
