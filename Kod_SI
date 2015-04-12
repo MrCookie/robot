@@ -174,7 +174,12 @@ void executeAction() {
 		servoForward(SERVO2);
 		servoForward(SERVO1);
 	} else if (currentAction == DEF1) {
-		
+	//Dodane, nie wiadomo czy działa :v
+		servoBackward(SERVO2);
+		servoForward(SERVO1);
+		waitMs(20);
+		servoBackward(SERVO2);
+		servoBackward(SERVO1);		
 	}
 }
 
