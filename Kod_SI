@@ -41,6 +41,7 @@
 #define BACKWARD_ATACK 8
 #define ROTATE_LEFT 9
 #define ROTATE_RIGHT 10
+#define DEF1 11
 
 // deklaracje funkcji
 void timer1();
@@ -132,6 +133,8 @@ void selectAction() {
 			
 		 else if (lastAction == ROTATE_RIGHT)
 			currentAction = ROTATE_RIGHT;
+		else
+		currentAction = DEF1;
 	    }
 	}
 }
@@ -170,6 +173,8 @@ void executeAction() {
 	} else if (currentAction == ROTATE_RIGHT) {
 		servoForward(SERVO2);
 		servoForward(SERVO1);
+	} else if (currentAction == DEF1) {
+		
 	}
 }
 
