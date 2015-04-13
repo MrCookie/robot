@@ -77,30 +77,30 @@ int main(void) {
 
 // Funkcja wyboru akcji
 void selectAction() {
-	if(!grdDetected(GRD1) || !grdDetected(GRD2) || !grdDetected(GRD3) || !grdDetected(GRD4))
+	if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4))
 	{
-		if (!grdDetected(GRD1) && !grdDetected(GRD2)){
+		if (grdDetected(GRD1) && grdDetected(GRD2)){
 			// jesli linia jest z przodu - ucieczka do tylu
 			currentAction = BACKWARD;
-		} else if (!grdDetected(GRD3) && !grdDetected(GRD4)) {
+		} else if (grdDetected(GRD3) && grdDetected(GRD4)) {
 			// jesli linia jest z tylu - ucieczka do przodu
 			currentAction = FORWARD;
-		} else if (!grdDetected(GRD1)) {
+		} else if (grdDetected(GRD1)) {
 			// jesli linia jest z przodu po lewej - ucieczka do tylu prawo
 			currentAction = BACKWARD_RIGHR;
-		} else if (!grdDetected(GRD2)) {
+		} else if (grdDetected(GRD2)) {
 			// jesli linia jest z przodu po prawej - ucieczka do tylu lewo
 			currentAction = BACKWARD_LEFT;
-		} else if (!grdDetected(GRD3)) {
+		} else if (grdDetected(GRD3)) {
 			// jesli linia jest z tylu po lewej - ucieczka do przodu prawo
 			currentAction = FORWARD_RIGHT;
-		} else if (!grdDetected(GRD4)) {
+		} else if (grdDetected(GRD4)) {
 			// jesli linia jest z tylu po prawej - ucieczka do przodu lewo
 			currentAction = FORWARD_LEFT;
-		} else if (!grdDetected(GRD2) && (!grdDetected(GRD4))) {
+		} else if (grdDetected(GRD2) && (grdDetected(GRD4))) {
 			//jeżeli linia jest wykryta przez 2 czujniki z prawej
                         currentAction = BACKWARD_LEFT;
-		} else if (!grdDetected(GRD1) && (!grdDetected(GRD3))) {
+		} else if (grdDetected(GRD1) && (grdDetected(GRD3))) {
 			//jeżeli linia jest wykryta przez 2 czujniki z lewej
                         currentAction = BACKWARD_RIGHR;
 		}
