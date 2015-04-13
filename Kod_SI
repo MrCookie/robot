@@ -183,8 +183,7 @@ void executeAction() {
 	{
 		servoForward(SERVO2);
 		servoBackward(SERVO1);
-		if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4)&&
-		!(distValue(DIST1) > DIST_TRESHOLD && distValue(DIST2) > DIST_TRESHOLD))  break;
+		if((distValue(DIST1) > DIST_TRESHOLD && distValue(DIST2) > DIST_TRESHOLD))  break;
 		}
 	}
 }
