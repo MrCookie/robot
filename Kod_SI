@@ -27,7 +27,7 @@
  */
 
 // definicja progu widzenia czujnikow odleglosci
-#define DIST_TRESHOLD 1600//600 //ok 15[cm]
+#define DIST_TRESHOLD 800
 
 // definicje nazwy czynnosci
 #define STOP 0
@@ -42,6 +42,7 @@
 #define ROTATE_LEFT 9
 #define ROTATE_RIGHT 10
 #define DEF1 11
+#define ATT1 12
 
 // deklaracje funkcji
 void timer1();
@@ -110,7 +111,7 @@ void selectAction() {
 	{
 		if (distValue(DIST1) > DIST_TRESHOLD && distValue(DIST2) > DIST_TRESHOLD) {
 			// jesi przeciwnik jest z przodu na wprost - atak
-			currentAction = FORWARD_ATACK;
+			currentAction = ATT1;
 		} else if (distValue(DIST1) > DIST_TRESHOLD) {
 			// jesli przeciwnik jest z przodu po lewej - do przodu na lewo
 			currentAction = FORWARD_LEFT;
@@ -119,9 +120,6 @@ void selectAction() {
 			// jesli przeciwnik jest z przodu po prawej - do przodu na prawo
 			currentAction = FORWARD_RIGHT;
 			lastAction = FORWARD_RIGHT;
-		} else if (distValue(DIST3) > DIST_TRESHOLD) {
-			// jesli przeciwnik jest z tylu - obrot
-			currentAction = ROTATE_LEFT;
 		}
 	}
 
@@ -180,6 +178,14 @@ void executeAction() {
 		waitMs(20);
 		servoBackward(SERVO2);
 		servoBackward(SERVO1);
+	} else if (currentAction == ATT1) {
+	for(;;)
+	{
+		servoForward(SERVO2);
+		servoBackward(SERVO1);
+		if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4)&&
+		!(distValue(DIST1) > DIST_TRESHOLD && distValue(DIST2) > DIST_TRESHOLD))  break;
+		}
 	}
 }
 
