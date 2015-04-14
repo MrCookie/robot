@@ -179,11 +179,19 @@ void executeAction() {
 		servoBackward(SERVO2);
 		servoBackward(SERVO1);
 	} else if (currentAction == ATT1) {
-	for(;;)
+	int i=0;
+	while(i=1)
 	{
 		servoForward(SERVO2);
 		servoBackward(SERVO1);
-		if((distValue(DIST1) > DIST_TRESHOLD && distValue(DIST2) > DIST_TRESHOLD))  break;
+		if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4))
+		{
+		i=1;
+		servoForward(SERVO1);
+		servoStop(SERVO2);
+		waitMs(50)
+		
+		}
 		}
 	}
 }
