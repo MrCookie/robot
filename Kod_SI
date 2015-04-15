@@ -65,10 +65,9 @@ int main(void) {
 
 	// oczekiwanie na nacisniecie przycosku i odliczanie
 	countdown();
-	if(switchIsOn(SWITCH2)) //tryb ucieczki bo pewnie przegramy :D
-	{
-	ucieczka();
-	}
+	
+	firstMove();
+	
 	// petla glowna programu
 	for (;;) {
 		// wybor akcji
