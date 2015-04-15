@@ -27,7 +27,7 @@
  */
 
 // definicja progu widzenia czujnikow odleglosci
-#define DIST_TRESHOLD 900
+#define DIST_TRESHOLD 750
 
 // definicje nazwy czynnosci
 #define STOP 0
@@ -50,8 +50,6 @@ void executeAction();
 void selectAction();
 void ucieczka();
 
-//Zmienne globalne (zuo)
-int prawa = 2, lewa = 0;
 
 // wartosc aktuanie wykonywanej czynnosci
 volatile int currentAction = STOP;
@@ -82,7 +80,6 @@ int main(void) {
 }
 
 void ucieczka(){
-int i;
 	servoBackward(SERVO2);
 	servoForward(SERVO1);
 	waitMs(500);
@@ -174,12 +171,19 @@ void executeAction() {
 	} else if (currentAction == BACKWARD) {
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
+		waitMs(100);
 	} else if (currentAction == BACKWARD_LEFT) {
 		servoStop(SERVO1);
 		servoBackward(SERVO2);
+		waitMs(300);
+		servoBackward(SERVO2);
+		servoForward(SERVO1);
 	} else if (currentAction == BACKWARD_RIGHR) {
 		servoForward(SERVO1);
 		servoStop(SERVO2);
+		waitMs(300);
+		servoBackward(SERVO2);
+		servoForward(SERVO1);
 	} else if (currentAction == BACKWARD_ATACK) {
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
