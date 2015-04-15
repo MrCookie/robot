@@ -83,19 +83,13 @@ int main(void) {
 
 void ucieczka(){
 int i;
-	for(i = 0;i>=3;i++) //3 razy do tylu
-	{
 	servoBackward(SERVO2);
 	servoForward(SERVO1);
-	waitMs(100);
-	}
+	waitMs(500);
 	
-	for(i = 0;i>=2;i++) //w lewo
-	{
 	servoStop(SERVO1);
 	servoBackward(SERVO2);
-	waitMs(100);
-	}
+	waitMs(500);
 
 }
 
@@ -112,11 +106,9 @@ void selectAction() {
 		} else if (grdDetected(GRD1)) {
 			// jesli linia jest z przodu po lewej - ucieczka do tylu prawo
 			currentAction = BACKWARD_RIGHR;
-			lewa += 1;
 		} else if (grdDetected(GRD2)) {
 			// jesli linia jest z przodu po prawej - ucieczka do tylu lewo
 			currentAction = BACKWARD_LEFT;
-			prawa += 1;
 		} else if (grdDetected(GRD3)) {
 			// jesli linia jest z tylu po lewej - ucieczka do przodu prawo
 			currentAction = FORWARD_RIGHT;
@@ -163,27 +155,7 @@ void selectAction() {
 }
 // Funkcja wykonuje akcje
 void executeAction() {
-	int i;
-	if (prawa >= 3)
-	{
 
-	for(i = 0;i>=3;i++)
-		{
-		servoForward(SERVO2);
-		servoForward(SERVO1);
-		waitMs(100);
-		}
-	}
-	if (lewa >= 1)
-	{
-		for(i = 0;i>=3;i++)
-		{
-		servoBackward(SERVO2);
-		servoBackward(SERVO1);
-		waitMs(100);
-		}
-
-	}
 	if (currentAction == STOP) {
 		servoStop(SERVO1);
 		servoStop(SERVO2);
@@ -200,29 +172,14 @@ void executeAction() {
 		servoForward(SERVO2);
 		servoBackward(SERVO1);
 	} else if (currentAction == BACKWARD) {
-	int i;
-	for(i=0;i>=3;i++)
-		{
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
-		waitMs(100);
-		}
 	} else if (currentAction == BACKWARD_LEFT) {
-	int i;
-	for(i=0;i>=3;i++)
-		{
 		servoStop(SERVO1);
 		servoBackward(SERVO2);
-		waitMs(100);
-		}
 	} else if (currentAction == BACKWARD_RIGHR) {
-	int i;
-	for(i=0;i>=3;i++)
-		{
 		servoForward(SERVO1);
 		servoStop(SERVO2);
-		waitMs(100);
-		}
 	} else if (currentAction == BACKWARD_ATACK) {
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
@@ -237,6 +194,9 @@ void executeAction() {
 		servoBackward(SERVO1);
 		if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4))
 		{
+		servoBackward(SERVO2);
+		servoForward(SERVO1);
+		waitMs(800);
 		}
 	}
 }
