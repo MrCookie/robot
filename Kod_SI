@@ -41,7 +41,6 @@
 #define BACKWARD_ATACK 8
 #define ROTATE_LEFT 9
 #define ROTATE_RIGHT 10
-#define DEF1 11
 #define ATT1 12
 
 // deklaracje funkcji
@@ -49,7 +48,9 @@ void timer1();
 void countdown();
 void executeAction();
 void selectAction();
+
 //Zmienne globalne (zuo)
+int prawa = 0, lewa = 0;
 
 // wartosc aktuanie wykonywanej czynnosci
 volatile int currentAction = STOP;
@@ -90,9 +91,11 @@ void selectAction() {
 		} else if (grdDetected(GRD1)) {
 			// jesli linia jest z przodu po lewej - ucieczka do tylu prawo
 			currentAction = BACKWARD_RIGHR;
+			lewa = true;
 		} else if (grdDetected(GRD2)) {
 			// jesli linia jest z przodu po prawej - ucieczka do tylu lewo
 			currentAction = BACKWARD_LEFT;
+			prawa = true;
 		} else if (grdDetected(GRD3)) {
 			// jesli linia jest z tylu po lewej - ucieczka do przodu prawo
 			currentAction = FORWARD_RIGHT;
@@ -177,9 +180,9 @@ void executeAction() {
 		servoBackward(SERVO1);
 		if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4))
 		{
-	break;
 		}
 	}
+	linia = 0;
 }
 
 // funkcja wywoluwana co 1 ms, realizuje operacje diagnostyczne
