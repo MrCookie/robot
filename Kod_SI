@@ -195,12 +195,14 @@ void executeAction() {
 		waitMs(350);
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
+		waitMs(300);
 	} else if (currentAction == BACKWARD_RIGHR) {
 		servoForward(SERVO1);
 		servoStop(SERVO2);
 		waitMs(350);
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
+		waitMs(300);
 	} else if (currentAction == BACKWARD_ATACK) {
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
