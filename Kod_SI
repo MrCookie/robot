@@ -173,15 +173,11 @@ void executeAction() {
 		servoForward(SERVO2);
 		servoForward(SERVO1);
 	} else if (currentAction == ATT1) {
-	int att=1;
-	while(att==1)
-	{
 		servoForward(SERVO2);
 		servoBackward(SERVO1);
 		if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4))
 		{
-	selectAction();
-		}
+	break;
 		}
 	}
 }
