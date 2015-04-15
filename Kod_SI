@@ -175,13 +175,13 @@ void executeAction() {
 	} else if (currentAction == BACKWARD_LEFT) {
 		servoStop(SERVO1);
 		servoBackward(SERVO2);
-		waitMs(300);
+		waitMs(250);
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
 	} else if (currentAction == BACKWARD_RIGHR) {
 		servoForward(SERVO1);
 		servoStop(SERVO2);
-		waitMs(300);
+		waitMs(250);
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
 	} else if (currentAction == BACKWARD_ATACK) {
@@ -200,7 +200,7 @@ void executeAction() {
 		{
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
-		waitMs(800);
+		waitMs(600);
 		}
 	}
 }
