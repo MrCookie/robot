@@ -27,7 +27,7 @@
  */
 
 // definicja progu widzenia czujnikow odleglosci
-#define DIST_TRESHOLD 750
+#define DIST_TRESHOLD 600
 
 // definicje nazwy czynnosci
 #define STOP 0
@@ -188,17 +188,17 @@ void executeAction() {
 	} else if (currentAction == BACKWARD) {
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
-		waitMs(100);
+		waitMs(300);
 	} else if (currentAction == BACKWARD_LEFT) {
 		servoStop(SERVO1);
 		servoBackward(SERVO2);
-		waitMs(250);
+		waitMs(350);
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
 	} else if (currentAction == BACKWARD_RIGHR) {
 		servoForward(SERVO1);
 		servoStop(SERVO2);
-		waitMs(250);
+		waitMs(350);
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
 	} else if (currentAction == BACKWARD_ATACK) {
@@ -217,7 +217,7 @@ void executeAction() {
 		{
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
-		waitMs(600);
+		waitMs(400);
 		}
 	}
 }
