@@ -163,9 +163,10 @@ void selectAction() {
 }
 // Funkcja wykonuje akcje
 void executeAction() {
+	int i;
 	if (prawa >= 3)
 	{
-	int i;
+
 	for(i = 0;i>=3;i++)
 		{
 		servoForward(SERVO2);
@@ -204,7 +205,7 @@ void executeAction() {
 		{
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
-		WaitMs(100);
+		waitMs(100);
 		}
 	} else if (currentAction == BACKWARD_LEFT) {
 	int i;
@@ -212,7 +213,7 @@ void executeAction() {
 		{
 		servoStop(SERVO1);
 		servoBackward(SERVO2);
-		WaitMs(100);
+		waitMs(100);
 		}
 	} else if (currentAction == BACKWARD_RIGHR) {
 	int i;
@@ -220,7 +221,7 @@ void executeAction() {
 		{
 		servoForward(SERVO1);
 		servoStop(SERVO2);
-		WaitMs(100);
+		waitMs(100);
 		}
 	} else if (currentAction == BACKWARD_ATACK) {
 		servoBackward(SERVO2);
