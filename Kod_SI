@@ -27,7 +27,7 @@
  */
 
 // definicja progu widzenia czujnikow odleglosci
-#define DIST_TRESHOLD 700
+#define DIST_TRESHOLD 900
 
 // definicje nazwy czynnosci
 #define STOP 0
@@ -82,15 +82,15 @@ int main(void) {
 }
 
 void ucieczka(){
-
-	for(int i=0;i>=3;i++) //3 razy do tylu
+int i;
+	for(i = 0;i>=3;i++) //3 razy do tylu
 	{
 	servoBackward(SERVO2);
 	servoForward(SERVO1);
 	waitMs(20);
 	}
 	
-	for(int i=0;i>=2;i++) //w lewo
+	for(i = 0;i>=2;i++) //w lewo
 	{
 	servoStop(SERVO1);
 	servoBackward(SERVO2);
@@ -165,13 +165,21 @@ void selectAction() {
 void executeAction() {
 	if (prawa >= 3)
 	{
-		servoBackward(SERVO2);
-		servoBackward(SERVO1);
+	int i;
+	for(i = 0;i>=3;i++)
+		{
+		servoForward(SERVO2);
+		servoForward(SERVO1);
+		}
 	}
 	if (lewa >= 1)
 	{
-		servoForward(SERVO2);
-		servoForward(SERVO1);
+		for(i = 0;i>=3;i++)
+		{
+		servoBackward(SERVO2);
+		servoBackward(SERVO1);
+		}
+
 	}
 
 
@@ -193,10 +201,19 @@ void executeAction() {
 	} else if (currentAction == BACKWARD) {
 		servoBackward(SERVO2);
 		servoForward(SERVO1);
+		WaitMs(1)
+		servoBackward(SERVO2);
+		servoForward(SERVO1);
 	} else if (currentAction == BACKWARD_LEFT) {
 		servoStop(SERVO1);
 		servoBackward(SERVO2);
+		WaitMs(1)
+		servoStop(SERVO1);
+		servoBackward(SERVO2);
 	} else if (currentAction == BACKWARD_RIGHR) {
+		servoForward(SERVO1);
+		servoStop(SERVO2);
+		WaitMs(1)
 		servoForward(SERVO1);
 		servoStop(SERVO2);
 	} else if (currentAction == BACKWARD_ATACK) {
