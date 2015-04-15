@@ -232,7 +232,6 @@ void executeAction() {
 		{
 		}
 	}
-	linia = 0;
 }
 
 // funkcja wywoluwana co 1 ms, realizuje operacje diagnostyczne
