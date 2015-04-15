@@ -49,6 +49,7 @@ void countdown();
 void executeAction();
 void selectAction();
 void ucieczka();
+void firstMove();
 
 
 // wartosc aktuanie wykonywanej czynnosci
@@ -78,7 +79,24 @@ int main(void) {
 		waitMs(20);
 	}
 }
-
+void firstMove()
+{
+	if(switchIsOn(SWITCH1))
+	{
+		if(switchIsOn(SWITCH2))
+		{
+			if(switchIsOn(SWITCH3)){currentAction = FORWARD;}
+			else currentAction = FORWARD_LEFT;
+		}
+		else currentAction = ROTATE_RIGHT;
+	}
+	else
+	{
+		if(switchIsOn(SWITCH2)){currentAction = FORWARD_RIGHT;}
+		else if(switchIsOn(SWITCH3)){currentAction = ROTATE_LEFT;}
+		else currentAction = BACKWARD;
+	}
+}
 void ucieczka(){
 	servoBackward(SERVO2);
 	servoForward(SERVO1);
