@@ -49,6 +49,7 @@ void timer1();
 void countdown();
 void executeAction();
 void selectAction();
+//Zmienne globalne (zuo)
 
 // wartosc aktuanie wykonywanej czynnosci
 volatile int currentAction = STOP;
@@ -132,7 +133,7 @@ void selectAction() {
 		 else if (lastAction == ROTATE_RIGHT){
 			currentAction = ROTATE_RIGHT;}
 		else{
-		currentAction = DEF1;
+		currentAction = BACKWARD;
 	    }
 	}
 }
@@ -171,26 +172,15 @@ void executeAction() {
 	} else if (currentAction == ROTATE_RIGHT) {
 		servoForward(SERVO2);
 		servoForward(SERVO1);
-	} else if (currentAction == DEF1) {
-	//Dodane, nie wiadomo czy działa :v
-		servoBackward(SERVO2);
-		servoForward(SERVO1);
-		waitMs(20);
-		servoBackward(SERVO2);
-		servoBackward(SERVO1);
 	} else if (currentAction == ATT1) {
-	int i=0;
-	while(i=1)
+	int att=1;
+	while(att==1)
 	{
 		servoForward(SERVO2);
 		servoBackward(SERVO1);
 		if(grdDetected(GRD1) || grdDetected(GRD2) || grdDetected(GRD3) || grdDetected(GRD4))
 		{
-		i=1;
-		servoForward(SERVO1);
-		servoStop(SERVO2);
-		waitMs(50)
-		
+	selectAction();
 		}
 		}
 	}
@@ -292,3 +282,4 @@ void countdown() {
 	ledOn(LED9);
 	ledOn(LED10);
 }
+
