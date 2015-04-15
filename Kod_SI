@@ -48,6 +48,7 @@ void timer1();
 void countdown();
 void executeAction();
 void selectAction();
+void ucieczka();
 
 //Zmienne globalne (zuo)
 int prawa = 2, lewa = 0;
@@ -65,7 +66,10 @@ int main(void) {
 
 	// oczekiwanie na nacisniecie przycosku i odliczanie
 	countdown();
-
+	if(switchIsOn(SWITCH2)) //tryb ucieczki bo pewnie przegramy :D
+	{
+	ucieczka();
+	}
 	// petla glowna programu
 	for (;;) {
 		// wybor akcji
@@ -75,6 +79,24 @@ int main(void) {
 		// opoznienie
 		waitMs(20);
 	}
+}
+
+void ucieczka(){
+
+	for(int i=0;i>=3;i++) //3 razy do tylu
+	{
+	servoBackward(SERVO2);
+	servoForward(SERVO1);
+	waitMs(20);
+	}
+	
+	for(int i=0;i>=2;i++) //w lewo
+	{
+	servoStop(SERVO1);
+	servoBackward(SERVO2);
+	waitMs(20);
+	}
+
 }
 
 // Funkcja wyboru akcji
@@ -141,12 +163,12 @@ void selectAction() {
 }
 // Funkcja wykonuje akcje
 void executeAction() {
-	if (prawa => 3)
+	if (prawa >= 3)
 	{
 		servoBackward(SERVO2);
 		servoBackward(SERVO1);
 	}
-	if (lewa => 1)
+	if (lewa >= 1)
 	{
 		servoForward(SERVO2);
 		servoForward(SERVO1);
